@@ -32,6 +32,8 @@ $path = "C:\APATH"
 $age = 30
 $date = (Get-Date).AddDays(-$age)
 $enddate = (Get-Date).tostring("yyyyMMdd")
+#Comment out below line if log file not needed
 $filename = 'C:\DeletionReports' + $enddate + '_DeletionReport.csv'
+#Comment out below line if log file not needed
 Get-ChildItem -Path $path -Recurse | Where-Object {-not $_.PsIsContainer -and $_.CreationTime -lt $date } | Export-Csv $filename
 Get-ChildItem -Path $path -Recurse | Where-Object {-not $_.PsIsContainer -and $_.CreationTime -lt $date } | Remove-Item
