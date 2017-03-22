@@ -7,7 +7,8 @@
 
    This script is designed to be executed as a scheduled task.
 .EXAMPLE
-   .\Remove-OldAzureStorageBlob.ps1 -storageAccountName foo -storageAccountKey bar -containerName backups -age 30 -errorSMTPServer mymail.domain.com -errorSourceAddress alerts@domain.com -errorDestAddress me@domain.com
+   .\Remove-OldAzureStorageBlob.ps1 -storageAccountName foo -storageAccountKey bar -containerName backups -age 30 `
+   -errorSMTPServer mymail.domain.com -errorSourceAddress alerts@domain.com -errorDestAddress me@domain.com
 .NOTES
    Author:    Phil Skents (phil@strangeadventures.in)
    URL:       https://strangeadventures.in
