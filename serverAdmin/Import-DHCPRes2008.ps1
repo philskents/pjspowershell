@@ -1,3 +1,22 @@
+<#
+.SYNOPSIS
+	This script takes a CSV file of DHCP reservations and imports them into
+    a DHCP scope hosted on a 2008/2008R2 DHCP server.
+.DESCRIPTION
+	Imports the CSV file and then takes entry through the following steps:
+    1) Converts the MAC address to a standard format (xx:xx:xx:xx:xx:xx)
+    2) Validates the IP and skips if invald
+    3) Validates the MAC and skips if invalid
+    4) If both th IP and MAC are valid the script builds and executes the netsh command
+.NOTES
+	File Name	: Import-DHCPRes2008.ps1
+	Author		: Phil "Barnabus" Skentelbery - phil.skents@gmail.com
+.LINK
+	https://strangeadventures.in
+.EXAMPLE
+	.\Import-DHCPRes2008.ps1 -pathToCsv C:\PathTo\my.csv -dhcpServer \\myDHCPServer
+#>
+
 [CmdletBinding()]
 Param(
     #Get path to CSV 
