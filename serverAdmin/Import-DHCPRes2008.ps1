@@ -3,6 +3,10 @@
 	This script takes a CSV file of DHCP reservations and imports them into
     a DHCP scope hosted on a 2008/2008R2 DHCP server.
 .DESCRIPTION
+    Assumes the CSV file used has the following columns:
+    
+    ScopeID,IPAddress,Mac,Name,Description 
+
 	Imports the CSV file and then takes entry through the following steps:
     1) Converts the MAC address to a standard format (xx:xx:xx:xx:xx:xx)
     2) Validates the IP and skips if invald
