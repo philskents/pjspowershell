@@ -4,6 +4,10 @@ A library of useful PowerShell scripts and snippets
 
 ## Azure
 
+### New-NSGFromCSV
+
+Creates a new NSG from a list of rules specified in a CSV file
+
 ### Remove-OldAzureStorageBlob.ps1
 
 Removes blobs from azure storage older than the specified age
