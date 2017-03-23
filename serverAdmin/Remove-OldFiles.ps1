@@ -16,8 +16,6 @@
 	http://www.aplicor.com
 .EXAMPLE
 	.\Remove-OldFilesAuto.ps1
-	
-	Be sure to configure the $path and $age variables before running.
 #>
 
 [CmdletBinding()]
