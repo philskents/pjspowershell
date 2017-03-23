@@ -28,13 +28,13 @@ Param(
 [Parameter (Mandatory=$true,Position=4)]
 [string]$age,
 
-[Parameter (Mandatory=$true,Position=5)]
+[Parameter (Mandatory=$false,Position=5)]
 [string]$errorSMTPServer,
 
-[Parameter (Mandatory=$true,Position=9)]
+[Parameter (Mandatory=$false,Position=9)]
 [string]$errorSourceAddress,
 
-[Parameter (Mandatory=$true,Position=5)]
+[Parameter (Mandatory=$false,Position=5)]
 [string]$errorDestAddress
 )
 
@@ -47,9 +47,15 @@ Try {
     Get-AzureStorageBlob -Context $context -Container $containerName | Where-Object {$_.LastModified -lt $date} | Remove-AzureStorageBlob
 }
 Catch{
-    $hostname = $env:COMPUTERNAME
-    $sub = 'Job failed on '+$hostname
-    $err = $_.Exception.Message
-    $msg = 'Scheduled job Remove-OldAzureStorageBlob failed on '+$hostname+' with error '+$err
-    Send-MailMessage -From $errorSourceAddress -To $errorDestAddress -Subject $sub -Body $msg -SmtpServer $errorSMTPServer
+    if (($errorSMTPServer -ne $null) -and ($errorDestAddress -ne $null) -and ($errorSourceAddress -ne $null)){
+        $hostname = $env:COMPUTERNAME
+        $sub = 'Job failed on '+$hostname
+        $err = $_.Exception.Message
+        $msg = 'Scheduled job Remove-OldAzureStorageBlob failed on '+$hostname+' with error '+$err
+        Send-MailMessage -From $errorSourceAddress -To $errorDestAddress -Subject $sub -Body $msg -SmtpServer $errorSMTPServer
+    }
+    else {
+        Write-Host "Error encountered" `n
+        Write-Host $_.Exception
+    }
 }
